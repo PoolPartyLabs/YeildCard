@@ -1,0 +1,9 @@
+### Create Order
+POST http://localhost:4001/gnosis-top-up HTTP/1.1
+content-type: application/json
+
+{ 
+  "sender": "0x3429fb3624D98068fc80ECCf0e4f5C586104D259",
+  "gnosisRecipient": "0x22dbf5CD86c1315630029Cd2F2FBee439502646D",
+  "amountInt": "300000"
+}
