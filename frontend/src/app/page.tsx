@@ -25,7 +25,7 @@ const sendTopUpRequest = async ({ wallet, amountUsdc }: {
       },
       body: JSON.stringify({
         sender: wallet,
-        amount: amountUsdc.toString(),
+        amountInt: amountUsdc.toString(),
         gnosisRecipient: process.env.NEXT_PUBLIC_GNOSIS_RECIPIENT || ''
       }),
     }

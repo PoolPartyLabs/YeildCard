@@ -1,4 +1,5 @@
-/* eslint-disable @typescript-eslint/no-redundant-type-constituents */
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
+/* eslint-disable @typescript-eslint/no-unsafe-return */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
@@ -12,7 +13,6 @@ import {
   TransactionReceipt,
   TransactionRequest,
   ContractRunner,
-  AddressLike,
 } from 'ethers';
 import { createDebridgeBridgeOrder } from './createDebridgeBridgeOrder';
 import { deBridgeOrderInput, deBridgeOrderResponse } from './types';
@@ -83,7 +83,7 @@ export class DebridgeService {
       payMaster,
       orderInput,
       payMasterAddress,
-      spenderAddress,
+      spenderAddress: spenderAddress as `0x${string}`,
       order,
     });
 
@@ -192,7 +192,7 @@ export class DebridgeService {
     payMaster: Wallet;
     orderInput: deBridgeOrderInput;
     payMasterAddress: string;
-    spenderAddress: AddressLike | null | undefined;
+    spenderAddress: `0x${string}`;
     order: deBridgeOrderResponse;
   }) {
     try {
@@ -200,7 +200,7 @@ export class DebridgeService {
       console.log(
         ` Token to approve: ${orderInput.srcChainTokenIn} (Gnosis USDC)`,
       );
-      console.log(` Spender address: ${spenderAddress}`);
+      console.log(` Spender address: ${spenderAddress.toString()}`);
 
       const tokenContract = new Contract(
         orderInput.srcChainTokenIn,
